@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from numbers import Number
-
 from cv_data import AWARDS, EDUCATION, EXPERIENCE, PROFILE, PROJECTS, SKILLS
 
 
@@ -25,22 +23,21 @@ def test_experience_rows_are_well_formed() -> None:
         assert isinstance(row["tech"], list) and row["tech"]
 
 
-def test_projects_scores_and_links() -> None:
+def test_projects_have_links_without_impact_scores() -> None:
     assert PROJECTS
     for row in PROJECTS:
-        assert 0 <= float(row["score"]) <= 10
+        assert "score" not in row
         assert row["link"].startswith(("http://", "https://"))
         assert isinstance(row["tech"], list) and row["tech"]
 
 
-def test_skills_range() -> None:
+def test_skills_describe_context_without_ratings() -> None:
     assert SKILLS
     for category, skills in SKILLS.items():
         assert category
         assert skills
-        for level in skills.values():
-            assert isinstance(level, Number)
-            assert 0 <= float(level) <= 10
+        for context in skills.values():
+            assert isinstance(context, str) and context.strip()
 
 
 def test_education_and_awards() -> None:
@@ -51,3 +48,4 @@ def test_education_and_awards() -> None:
     for award in AWARDS:
         assert isinstance(award["year"], int)
         assert isinstance(award["details"], list) and award["details"]
+

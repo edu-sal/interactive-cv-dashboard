@@ -1,20 +1,21 @@
 # GitHub Polish Checklist (Employer-Facing)
 
-## 1) Profile README (biggest win)
+## 1) Keep the profile current
 
-1. Create a new public repo named exactly `js0596a`.
-2. Add a `README.md` in that repo.
-3. Paste content from `PROFILE_README_TEMPLATE.md` and update the CV repo link.
+1. Maintain the profile README in [js0596a/js0596a](https://github.com/js0596a/js0596a).
+2. Keep degree details, role titles, dates, and project descriptions consistent with `cv_data.py`.
+3. Label the Costos demo and its screenshots as synthetic data; keep company records private.
 
-## 2) Pin the right 6 repositories
+## 2) Pin relevant repositories
 
 Pin these first:
 
+- [Costos Dashboard Demo](https://github.com/js0596a/costos-dashboard)
 - Interactive CV Dashboard (this repo)
 - FoodBridge or hackathon repo (if available)
 - Any ML project with results
 - Any analytics dashboard project
-- Any clean SQL/data project
+- A coursework or data project you can explain
 - One repo showing teamwork or presentation context
 
 ## 3) Make each pinned repo recruiter-readable
@@ -43,3 +44,4 @@ For each pinned repo:
 - Add short project demo videos/GIFs
 - Add GitHub Pages for portfolio landing page
 - Add contact links in every README
+

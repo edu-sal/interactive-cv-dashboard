@@ -107,9 +107,9 @@ def run_capture(
 
             page.locator("label", has_text="Projects").first.click()
             page.wait_for_timeout(1100)
-            page.fill("#project-search", "FoodBridge")
+            page.fill("#project-search", "Costos")
             page.wait_for_timeout(900)
-            page.screenshot(path=str(frames_dir / "03-projects-foodbridge.png"))
+            page.screenshot(path=str(frames_dir / "03-projects-costos.png"))
 
             page.locator("label", has_text="Skills").first.click()
             page.wait_for_timeout(1100)
@@ -120,7 +120,7 @@ def run_capture(
         frame_paths = [
             frames_dir / "01-overview.png",
             frames_dir / "02-experience-awards.png",
-            frames_dir / "03-projects-foodbridge.png",
+            frames_dir / "03-projects-costos.png",
             frames_dir / "04-skills.png",
         ]
         build_gif(
@@ -190,3 +190,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

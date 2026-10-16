@@ -1,57 +1,33 @@
 # Interactive CV Dashboard
 
-This is my resume as an interactive Dash app.
+Hi, I'm Eduardo. This is a Dash app for browsing my experience, projects, coursework, and awards while I finish my B.S. in Statistics at American University. My specialization is Applied Statistics, and I'm pursuing a Mathematics minor.
 
-The app presents my education, work experience, leadership experience, projects, skills, and awards in a format that is easier to explore than a static PDF. I use it as a portfolio companion to my resume, especially for showing the technical projects behind my operations research, analytics, and machine learning experience.
+## What you'll find
 
-## Quick Look
+- **Internships:** Data Scientist Intern at Curfimex (May-August 2026) and Data Analyst Intern at FinEx (May-August 2025).
+- **Research:** a MovieLens matrix-factorization baseline from my part-time undergraduate research work (May-August 2026).
+- **Student projects:** FoodBridge and the Goldman Sachs case competition (April 2026).
+- **Tools and coursework:** descriptions of how I've used a tool or studied a topic, without numerical proficiency ratings or project-impact scores.
 
-![Overview](docs/screenshots/01-overview.png)
+At Curfimex I used Python to extract and clean Excel data, built Dash and Plotly views of monthly costs, and made Pareto (80/20) charts and Excel summaries. I used Codex for coding and debugging assistance. At FinEx I worked with ABCA PDF reports for a cannabis market-sizing project and prepared dashboards, summaries, charts, and slides from those records.
 
-![Experience and awards](docs/screenshots/02-experience-awards.png)
+The app's education section separates completed coursework from my current courses: Database and AI (SQL), Numerical Analysis, and Advanced Machine Learning.
 
-![Production Flow project](docs/screenshots/03-projects-production-flow.png)
+## Featured project: Costos
 
-![Skills](docs/screenshots/04-skills.png)
+[Costos Dashboard Demo](https://github.com/js0596a/costos-dashboard) is a public demo adapted from my private internship app. Its data and screenshots are **synthetic**; they do not show company records.
 
-## Resume Focus
+![Costos demo: monthly overview using synthetic data](https://raw.githubusercontent.com/js0596a/costos-dashboard/main/assets/screenshots/overview.png)
 
-The current version reflects my updated resume focus:
+![Costos demo: Pareto chart using synthetic data](https://raw.githubusercontent.com/js0596a/costos-dashboard/main/assets/screenshots/pareto.png)
 
-- Applied Statistics & Applied Mathematics student at American University.
-- Data Scientist experience at Curfimex S.A. de C.V.
-- Production-flow simulation, queueing analysis, cost modeling, control charts, capability analysis, and Bayesian process classification.
-- Data Analyst experience through FinEx Concierge Solutions LLC.
-- Leadership/project experience through FoodBridge and the Goldman Sachs Case Competition.
+## Using the CV app
 
-## What The App Shows
+Choose Overview, Experience, Projects, or Skills. You can filter experience and projects by technology, search project descriptions, and browse tools by category. The charts show dates and listed tools; they do not rank my abilities or claim measured project impact.
 
-- Overview: profile summary, contact links, and quick stats.
-- Experience: work and leadership cards with role highlights.
-- Projects: searchable project list with links to repositories and external work.
-- Skills: grouped technical and analytical skills.
-- Awards: scholarships and academic recognition.
+The app uses Python, Dash, and Plotly. Its profile content lives in `cv_data.py`.
 
-## Featured Project Alignment
-
-The app now includes the same Curfimex language used in my resume:
-
-- Built Python dashboards and simulation workflows to transform raw production logs into operational insights on throughput, bottlenecks, machine capacity, and process costs.
-- Performed EDA, data cleaning, and statistical modeling on plant process data to support queueing analysis, capability studies, and production planning decisions.
-- Developed data science tools for queueing simulation, control charts, process capability analysis, and Bayesian process classification.
-
-## Tech Stack
-
-- Python
-- Dash
-- Plotly
-- Pandas
-- Git/GitHub
-- Docker
-- CSS
-- Pytest
-
-## Run It
+## Run it locally
 
 ```bash
 git clone https://github.com/js0596a/interactive-cv-dashboard.git
@@ -63,25 +39,19 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Open:
-
-```text
-http://127.0.0.1:8050
-```
-
-If `8050` is busy:
+Open `http://127.0.0.1:8050`. If that port is busy:
 
 ```bash
 python -c "from app import app; app.run(debug=True, port=8051)"
 ```
 
-## Main Links
+## Links
 
-- Production Flow Decision Studio: [github.com/js0596a/empirical-lot-cost-simulator](https://github.com/js0596a/empirical-lot-cost-simulator)
-- Leather Operations MLP Dashboard: [github.com/js0596a/recurtido-mlp-dashboard](https://github.com/js0596a/recurtido-mlp-dashboard)
-- FoodBridge / GeorgeHacks: [devpost.com/software/food-bridge-isqzu0](https://devpost.com/software/food-bridge-isqzu0)
-- LinkedIn: [linkedin.com/in/edu-sal](https://linkedin.com/in/edu-sal)
+- [GitHub profile](https://github.com/js0596a)
+- [Costos Dashboard Demo](https://github.com/js0596a/costos-dashboard)
+- [Leather Operations MLP Dashboard](https://github.com/js0596a/recurtido-mlp-dashboard)
+- [Production Flow Simulator](https://github.com/js0596a/empirical-lot-cost-simulator)
+- [FoodBridge](https://devpost.com/software/food-bridge-isqzu0)
+- [LinkedIn](https://linkedin.com/in/edu-sal)
 
-## Note
-
-This repo is public-safe and does not include private company datasets.
+This repository contains portfolio content and app code. Private company datasets are not included.

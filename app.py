@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta
+
 from dash import Dash, Input, Output, dcc, html
 import plotly.graph_objects as go
 
@@ -8,15 +10,13 @@ from cv_data import AWARDS, EDUCATION, EXPERIENCE, PROFILE, PROJECTS, SKILLS
 ACCENT_COLORS = ["#0ea5a4", "#ff7a59", "#ffd166", "#3aa8ff", "#6b9ac4", "#f29e4c"]
 
 
-def flatten_skills(category: str, min_level: int) -> list[dict]:
+def flatten_skills(category: str) -> list[dict]:
     rows = []
     for cat_name, items in SKILLS.items():
         if category != "All" and cat_name != category:
             continue
-        for skill, level in items.items():
-            if level >= min_level:
-                rows.append({"category": cat_name, "skill": skill, "level": level})
-    rows.sort(key=lambda row: row["level"], reverse=True)
+        for skill, context in items.items():
+            rows.append({"category": cat_name, "skill": skill, "context": context})
     return rows
 
 
@@ -57,7 +57,7 @@ def classify_experience_section(role: dict) -> str:
     section = str(role.get("section", "")).strip().lower()
     if section in {"work", "professional"}:
         return "work"
-    if section in {"leadership", "competition", "hackathon"}:
+    if section in {"leadership", "competition", "hackathon", "project", "research"}:
         return "leadership"
 
     company_text = f"{role.get('company', '')} {role.get('role', '')}".lower()
@@ -126,125 +126,67 @@ def style_figure(fig: go.Figure, title: str) -> go.Figure:
 
 def make_timeline_figure(roles: list[dict]) -> go.Figure:
     if not roles:
-        return empty_figure("Career Timeline", "No experience matches this filter.")
+        return empty_figure("Experience dates", "No experience matches this filter.")
 
     fig = go.Figure()
-    for idx, role in enumerate(sorted(roles, key=lambda r: r["start_year"])):
-        start_year = role["start_year"]
-        end_year = role["end_year"]
-        duration = end_year - start_year + 1
-        label = f"{role['role']} | {role['company']}"
-        fig.add_trace(
-            go.Bar(
-                x=[duration],
-                y=[label],
-                base=[start_year],
-                orientation="h",
-                marker=dict(color=ACCENT_COLORS[idx % len(ACCENT_COLORS)]),
-                customdata=[[start_year, end_year, role["location"]]],
-                hovertemplate=(
-                    "<b>%{y}</b><br>"
-                    "Years: %{customdata[0]}-%{customdata[1]}<br>"
-                    "Location: %{customdata[2]}"
-                    "<extra></extra>"
-                ),
-            )
-        )
-
-    min_year = min(item["start_year"] for item in roles) - 1
-    max_year = max(item["end_year"] for item in roles) + 1
-
-    fig.update_layout(showlegend=False, bargap=0.5)
-    fig.update_xaxes(dtick=1, range=[min_year, max_year], title="Year")
-    return style_figure(fig, "Career Timeline")
+    for idx, role in enumerate(sorted(roles, key=lambda r: r["start_month"])):
+        start = datetime.strptime(role["start_month"], "%Y-%m")
+        end_month = datetime.strptime(role["end_month"], "%Y-%m")
+        end = (end_month.replace(day=28) + timedelta(days=4)).replace(day=1)
+        label = role.get("timeline_label", role["role"])
+        fig.add_trace(go.Bar(
+            x=[(end - start).total_seconds() * 1000], y=[label], base=[start],
+            orientation="h", marker=dict(color=ACCENT_COLORS[idx % len(ACCENT_COLORS)]),
+            customdata=[[role["date_range"], role["company"], role["location"]]],
+            hovertemplate="<b>%{y}</b><br>%{customdata[1]}<br>%{customdata[0]}<br>%{customdata[2]}<extra></extra>",
+        ))
+    fig.update_layout(showlegend=False, bargap=0.45, height=360)
+    fig.update_xaxes(type="date", tickformat="%b %Y", title="Month", automargin=True)
+    fig.update_yaxes(automargin=True)
+    return style_figure(fig, "Experience dates")
 
 
-def make_radar_figure(skill_rows: list[dict]) -> go.Figure:
+def make_skill_category_figure(skill_rows: list[dict]) -> go.Figure:
     if not skill_rows:
-        return empty_figure("Skill Radar", "No skills match this filter.")
-
-    labels = [row["skill"] for row in skill_rows[:10]]
-    values = [row["level"] for row in skill_rows[:10]]
-
-    fig = go.Figure(
-        data=[
-            go.Scatterpolar(
-                r=values + values[:1],
-                theta=labels + labels[:1],
-                fill="toself",
-                line=dict(color="#0ea5a4", width=2),
-                fillcolor="rgba(14,165,164,0.28)",
-                marker=dict(size=5, color="#ff7a59"),
-                name="Skill Level",
-            )
-        ]
-    )
-    fig.update_layout(
-        polar=dict(radialaxis=dict(visible=True, range=[0, 10], dtick=2, gridcolor="rgba(22,33,47,0.16)")),
-        showlegend=False,
-    )
-    return style_figure(fig, "Skill Radar (Top 10)")
+        return empty_figure("Tools and topics", "No skills match this filter.")
+    categories = list(dict.fromkeys(row["category"] for row in skill_rows))
+    counts = [sum(row["category"] == category for row in skill_rows) for category in categories]
+    fig = go.Figure(go.Bar(
+        x=counts, y=categories, orientation="h", marker_color="#0ea5a4",
+        hovertemplate="%{y}<br>%{x} listed tools or topics<extra></extra>",
+    ))
+    fig.update_xaxes(title="Number listed", dtick=1)
+    fig.update_yaxes(automargin=True)
+    return style_figure(fig, "Tools and topics by category")
 
 
 def make_skill_bubble_figure(skill_rows: list[dict]) -> go.Figure:
     if not skill_rows:
-        return empty_figure("Skill Matrix", "Adjust filters to reveal your strongest tools.")
-
-    fig = go.Figure(
-        data=[
-            go.Scatter(
-                x=[row["category"] for row in skill_rows],
-                y=[row["skill"] for row in skill_rows],
-                mode="markers",
-                marker=dict(
-                    size=[row["level"] * 4 + 6 for row in skill_rows],
-                    color=[row["level"] for row in skill_rows],
-                    colorscale=[
-                        [0.0, "#8ecae6"],
-                        [0.35, "#3aa8ff"],
-                        [0.7, "#0ea5a4"],
-                        [1.0, "#ff7a59"],
-                    ],
-                    line=dict(width=1, color="rgba(22,33,47,0.16)"),
-                    showscale=True,
-                    colorbar=dict(title="Level"),
-                ),
-                text=[f"{row['skill']} ({row['level']}/10)" for row in skill_rows],
-                hovertemplate="<b>%{y}</b><br>Category: %{x}<br>%{text}<extra></extra>",
-            )
-        ]
-    )
-    fig.update_layout(yaxis=dict(categoryorder="total ascending"))
-    return style_figure(fig, "Skill Matrix")
+        return empty_figure("Tools and topics", "Choose a category to see its tools and topics.")
+    fig = go.Figure(go.Scatter(
+        x=[row["category"] for row in skill_rows],
+        y=[row["skill"] for row in skill_rows], mode="markers",
+        marker=dict(size=13, color="#0ea5a4"),
+        text=[row["context"] for row in skill_rows],
+        hovertemplate="<b>%{y}</b><br>%{text}<extra></extra>",
+    ))
+    fig.update_layout(height=max(360, len(skill_rows) * 26))
+    fig.update_yaxes(automargin=True)
+    return style_figure(fig, "Tools and topics - hover for context")
 
 
-def make_project_score_figure(projects: list[dict]) -> go.Figure:
+def make_project_technology_figure(projects: list[dict]) -> go.Figure:
     if not projects:
-        return empty_figure("Project Impact", "No projects match this filter.")
-
-    ordered = sorted(projects, key=lambda p: p["score"], reverse=True)
-    fig = go.Figure(
-        data=[
-            go.Bar(
-                x=[project["score"] for project in ordered],
-                y=[project["name"] for project in ordered],
-                orientation="h",
-                marker=dict(
-                    color=[project["score"] for project in ordered],
-                    colorscale=[
-                        [0.0, "#90e0ef"],
-                        [0.5, "#3aa8ff"],
-                        [1.0, "#ff7a59"],
-                    ],
-                    line=dict(width=1, color="rgba(22,33,47,0.16)"),
-                ),
-                hovertemplate="<b>%{y}</b><br>Impact Score: %{x}<extra></extra>",
-            )
-        ]
-    )
-    fig.update_layout(showlegend=False)
-    fig.update_xaxes(range=[0, 10], dtick=1)
-    return style_figure(fig, "Project Impact Score")
+        return empty_figure("Project tools", "No projects match this filter.")
+    points = [(project["name"], tech) for project in projects for tech in project["tech"]]
+    fig = go.Figure(go.Scatter(
+        x=[tech for _, tech in points], y=[name for name, _ in points],
+        mode="markers", marker=dict(size=12, color="#ff7a59"),
+        hovertemplate="<b>%{y}</b><br>%{x}<extra></extra>",
+    ))
+    fig.update_yaxes(automargin=True)
+    fig.update_xaxes(tickangle=-35, automargin=True)
+    return style_figure(fig, "Tools listed for each project")
 
 
 def make_project_cards(projects: list[dict]) -> list[html.Div]:
@@ -267,7 +209,7 @@ def make_project_cards(projects: list[dict]) -> list[html.Div]:
                     [html.Span(tag, className="tag") for tag in project["tech"]],
                     className="tag-row",
                 ),
-                html.A("View Project", href=project["link"], target="_blank", className="card-link"),
+                html.A(project.get("link_label", "View Project"), href=project["link"], target="_blank", className="card-link"),
             ]
         )
 
@@ -291,7 +233,7 @@ def make_experience_cards(roles: list[dict], empty_message: str) -> list[html.Di
                 className="experience-card",
                 children=[
                     html.Div(f"{role['role']} @ {role['company']}", className="card-title"),
-                    html.Div(f"{role['start_year']} - {role['end_year']} | {role['location']}", className="card-meta"),
+                    html.Div(f"{role['date_range']} | {role['location']}", className="card-meta"),
                     html.Ul([html.Li(item) for item in role["highlights"]], className="bullet-list"),
                     html.Div([html.Span(tag, className="tag") for tag in role["tech"]], className="tag-row"),
                 ],
@@ -309,7 +251,9 @@ def make_education_cards() -> list[html.Div]:
                 children=[
                     html.Div(item["degree"], className="card-title"),
                     html.Div(item["school"], className="card-description"),
-                    html.Div(str(item["year"]), className="card-meta"),
+                    html.Div(item.get("graduation", str(item["year"])), className="card-meta"),
+                    html.P("Completed coursework: " + item.get("coursework", ""), className="card-description"),
+                    html.P("In progress: " + item.get("in_progress", ""), className="card-description"),
                 ],
             )
         )
@@ -342,7 +286,7 @@ def make_award_cards() -> list[html.Div]:
 def make_skill_chips(skill_rows: list[dict]) -> list[html.Span]:
     if not skill_rows:
         return [html.Span("No skills selected", className="tag")]
-    return [html.Span(f"{row['skill']} ({row['level']})", className="tag") for row in skill_rows]
+    return [html.Span(f"{row['skill']}: {row['context']}", className="tag") for row in skill_rows]
 
 
 def panel_visibility(selected_view: str) -> tuple[dict, dict, dict, dict]:
@@ -404,7 +348,7 @@ app.layout = html.Div(
                         html.Aside(
                             className="control-panel",
                             children=[
-                                html.H3("Control Deck"),
+                                html.H3("Explore"),
                                 html.Label("View"),
                                 dcc.RadioItems(
                                     id="view-mode",
@@ -425,15 +369,6 @@ app.layout = html.Div(
                                     value="All",
                                     clearable=False,
                                 ),
-                                html.Label("Minimum Skill Level"),
-                                dcc.Slider(
-                                    id="skill-min",
-                                    min=1,
-                                    max=10,
-                                    value=6,
-                                    step=1,
-                                    marks={1: "1", 4: "4", 7: "7", 10: "10"},
-                                ),
                                 html.Label("Filter by Technology"),
                                 dcc.Dropdown(
                                     id="tech-filter",
@@ -445,7 +380,7 @@ app.layout = html.Div(
                                 dcc.Input(
                                     id="project-search",
                                     type="text",
-                                    placeholder="e.g. NLP, dashboard, API",
+                                    placeholder="e.g. Costos, MovieLens, Excel",
                                     debounce=True,
                                 ),
                             ],
@@ -463,8 +398,8 @@ app.layout = html.Div(
                                         html.Div(
                                             className="split-grid",
                                             children=[
-                                                dcc.Graph(id="project-score", config={"displayModeBar": False}),
-                                                dcc.Graph(id="skill-radar", config={"displayModeBar": False}),
+                                                dcc.Graph(id="project-tools", config={"displayModeBar": False}),
+                                                dcc.Graph(id="skill-categories", config={"displayModeBar": False}),
                                             ],
                                         ),
                                     ],
@@ -475,7 +410,7 @@ app.layout = html.Div(
                                     children=[
                                         html.H3("Work Experience"),
                                         html.Div(id="work-experience-grid", className="card-grid"),
-                                        html.H3("Leadership Experience"),
+                                        html.H3("Research & Student Projects"),
                                         html.Div(id="leadership-experience-grid", className="card-grid"),
                                         html.H3("Education"),
                                         html.Div(id="education-grid", className="education-grid"),
@@ -514,9 +449,9 @@ app.layout = html.Div(
     Output("view-badge", "children"),
     Output("kpi-row", "children"),
     Output("timeline-graph", "figure"),
-    Output("skill-radar", "figure"),
+    Output("skill-categories", "figure"),
     Output("skill-bubbles", "figure"),
-    Output("project-score", "figure"),
+    Output("project-tools", "figure"),
     Output("project-grid", "children"),
     Output("work-experience-grid", "children"),
     Output("leadership-experience-grid", "children"),
@@ -528,13 +463,12 @@ app.layout = html.Div(
     Output("projects-panel", "style"),
     Output("skills-panel", "style"),
     Input("skill-category", "value"),
-    Input("skill-min", "value"),
     Input("tech-filter", "value"),
     Input("project-search", "value"),
     Input("view-mode", "value"),
 )
-def refresh_dashboard(category: str, min_level: int, tech_filter: list[str], search: str, view_mode: str):
-    skill_rows = flatten_skills(category, min_level)
+def refresh_dashboard(category: str, tech_filter: list[str], search: str, view_mode: str):
+    skill_rows = flatten_skills(category)
     projects = filter_projects(tech_filter, search)
     roles = filter_experience(tech_filter)
     work_roles, leadership_roles = split_experience_sections(roles)
@@ -542,12 +476,11 @@ def refresh_dashboard(category: str, min_level: int, tech_filter: list[str], sea
 
     min_start = min(item["start_year"] for item in EXPERIENCE)
     max_end = max(item["end_year"] for item in EXPERIENCE)
-    total_years = max_end - min_start + 1
 
     kpis = [
-        card("Career Span", f"{total_years} yrs", f"{min_start}-{max_end}"),
+        card("Experience dates", f"{min_start}-{max_end}", "Internships and student projects"),
         card("Visible Projects", str(len(projects)), "Based on filters"),
-        card("Visible Skills", str(len(skill_rows)), "Above minimum level"),
+        card("Visible Skills", str(len(skill_rows)), "In selected category"),
         card("Roles", str(len(roles)), "Matching tech filter"),
         card("Awards", str(len(AWARDS)), f"${award_funding:,} scholarship funding"),
     ]
@@ -565,15 +498,15 @@ def refresh_dashboard(category: str, min_level: int, tech_filter: list[str], sea
         view_title,
         kpis,
         make_timeline_figure(roles),
-        make_radar_figure(skill_rows),
+        make_skill_category_figure(skill_rows),
         make_skill_bubble_figure(skill_rows),
-        make_project_score_figure(projects),
+        make_project_technology_figure(projects),
         make_project_cards(projects),
         make_experience_cards(work_roles, "No work-experience roles match this tech filter."),
-        make_experience_cards(leadership_roles, "No leadership roles match this tech filter."),
+        make_experience_cards(leadership_roles, "No research or student projects match this tech filter."),
         make_education_cards(),
         make_award_cards(),
-        make_skill_chips(skill_rows[:24]),
+        make_skill_chips(skill_rows),
         overview_style,
         experience_style,
         projects_style,
@@ -583,3 +516,4 @@ def refresh_dashboard(category: str, min_level: int, tech_filter: list[str], sea
 
 if __name__ == "__main__":
     app.run(debug=True)
+

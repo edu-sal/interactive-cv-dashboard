@@ -13,7 +13,7 @@ from cv_data import AWARDS, EDUCATION, EXPERIENCE, PROFILE, PROJECTS, SKILLS
 
 REQUIRED_PROFILE_KEYS = {"name", "headline", "location", "email", "phone", "summary", "links"}
 REQUIRED_EXPERIENCE_KEYS = {"role", "company", "location", "start_year", "end_year", "highlights", "tech"}
-REQUIRED_PROJECT_KEYS = {"name", "description", "impact", "tech", "link", "score"}
+REQUIRED_PROJECT_KEYS = {"name", "description", "impact", "tech", "link"}
 REQUIRED_EDUCATION_KEYS = {"degree", "school", "year"}
 REQUIRED_AWARD_KEYS = {"title", "issuer", "year", "type", "details"}
 
@@ -65,10 +65,8 @@ def validate() -> list[str]:
                 continue
             if not _is_http_url(row["link"]):
                 errors.append(f"PROJECTS[{idx}].link is not a valid URL")
-            if not isinstance(row["score"], Number):
-                errors.append(f"PROJECTS[{idx}].score must be numeric")
-            elif not (0 <= float(row["score"]) <= 10):
-                errors.append(f"PROJECTS[{idx}].score must be between 0 and 10")
+            if "score" in row:
+                errors.append(f"PROJECTS[{idx}] should not contain an impact score")
             if not isinstance(row["tech"], list) or not row["tech"]:
                 errors.append(f"PROJECTS[{idx}].tech must be a non-empty list")
 
@@ -79,9 +77,9 @@ def validate() -> list[str]:
             if not isinstance(items, dict) or not items:
                 errors.append(f"SKILLS['{category}'] must be a non-empty dict")
                 continue
-            for skill, level in items.items():
-                if not isinstance(level, Number) or not (0 <= float(level) <= 10):
-                    errors.append(f"SKILLS['{category}']['{skill}'] must be numeric between 0 and 10")
+            for skill, context in items.items():
+                if not isinstance(context, str) or not context.strip():
+                    errors.append(f"SKILLS['{category}']['{skill}'] must describe its context")
 
     if not isinstance(EDUCATION, list) or not EDUCATION:
         errors.append("EDUCATION must be a non-empty list")
@@ -130,3 +128,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
