@@ -20,13 +20,13 @@ def test_skill_categories_preserve_the_resume_lists_and_coursework_label():
     }
 
 
-def test_experience_retains_original_titles_dates_and_bullet_counts():
+def test_experience_matches_confirmed_roles_dates_and_bullet_counts():
     assert [(role["role"], role["date_range"], len(role["highlights"])) for role in EXPERIENCE] == [
-        ("Data Scientist Intern", "May 2026 - Aug 2026", 3),
-        ("Data Analyst Intern", "May 2025 - Aug 2025", 3),
+        ("Data Scientist Intern (Full-Time, Unpaid)", "May 2026 - Aug 2026", 3),
+        ("Data Analyst Intern (Part-Time, Unpaid)", "May 2025 - Aug 2025", 3),
         ("Undergraduate Research Assistant (Part-Time)", "May 2026 - Aug 2026", 2),
-        ("Product & Data Contributor", "Apr 2026", 2),
-        ("Team Lead", "Apr 2026", 2),
+        ("Business & Presentation Contributor", "Apr 2026", 2),
+        ("Team Lead (Student Case Competition)", "Apr 2026", 2),
     ]
 
 
