@@ -6,7 +6,7 @@
   <text x="60" y="118" fill="#0F172A" font-size="16" font-family="Arial, sans-serif" font-weight="700">Data Layer</text>
   <text x="60" y="144" fill="#334155" font-size="13" font-family="Arial, sans-serif">cv_data.py</text>
   <text x="60" y="164" fill="#334155" font-size="13" font-family="Arial, sans-serif">Profile, Experience, Projects,</text>
-  <text x="60" y="182" fill="#334155" font-size="13" font-family="Arial, sans-serif">Skills, Education, Awards</text>
+  <text x="60" y="182" fill="#334155" font-size="13" font-family="Arial, sans-serif">Skills, Education</text>
 
   <path d="M278 138 H314" stroke="#64748B" stroke-width="3"/>
   <polygon points="314,138 303,132 303,144" fill="#64748B"/>
@@ -41,3 +41,4 @@
   <text x="60" y="301" fill="#334155" font-size="13" font-family="Arial, sans-serif">Bash/Make: local workflows and link checks</text>
   <text x="540" y="301" fill="#334155" font-size="13" font-family="Arial, sans-serif">YAML: CI automation in GitHub Actions</text>
 </svg>
+

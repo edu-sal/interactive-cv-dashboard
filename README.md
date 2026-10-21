@@ -1,13 +1,13 @@
 # Interactive CV Dashboard
 
-Hi, I'm Eduardo. This is a Dash app for browsing my experience, projects, coursework, and awards while I finish my B.S. in Statistics at American University. My specialization is Applied Statistics, and I'm pursuing a Mathematics minor.
+Hi, I'm Eduardo. This is a Dash app for browsing my experience, projects, coursework, and skills while I finish my B.S. in Statistics at American University. My specialization is Applied Statistics, and I'm pursuing a Mathematics minor.
 
 ## What you'll find
 
 - **Internships:** Data Scientist Intern at Curfimex (May-August 2026) and Data Analyst Intern at FinEx (May-August 2025).
 - **Research:** a MovieLens matrix-factorization baseline from my part-time undergraduate research work (May-August 2026).
 - **Student projects:** FoodBridge and the Goldman Sachs case competition (April 2026).
-- **Tools and coursework:** descriptions of how I've used a tool or studied a topic, without numerical proficiency ratings or project-impact scores.
+- **Tools and coursework:** the tools and methods listed on my résumé, with SQL marked as coursework.
 
 At Curfimex I used Python to extract and clean Excel data, built Dash and Plotly views of monthly costs, and made Pareto (80/20) charts and Excel summaries. I used Codex for coding and debugging assistance. At FinEx I worked with ABCA PDF reports for a cannabis market-sizing project and prepared dashboards, summaries, charts, and slides from those records.
 
@@ -23,7 +23,7 @@ The app's education section separates completed coursework from my current cours
 
 ## Using the CV app
 
-Choose Overview, Experience, Projects, or Skills. You can filter experience and projects by technology, search project descriptions, and browse tools by category. The charts show dates and listed tools; they do not rank my abilities or claim measured project impact.
+Choose Overview, Experience, Projects, or Skills. You can filter experience and projects by tool or topic, search project descriptions, and browse the résumé's Tools and Methods lists. The charts show dates and listed tools.
 
 The app uses Python, Dash, and Plotly. Its profile content lives in `cv_data.py`.
 
@@ -49,9 +49,8 @@ python -c "from app import app; app.run(debug=True, port=8051)"
 
 - [GitHub profile](https://github.com/js0596a)
 - [Costos Dashboard Demo](https://github.com/js0596a/costos-dashboard)
-- [Leather Operations MLP Dashboard](https://github.com/js0596a/recurtido-mlp-dashboard)
-- [Production Flow Simulator](https://github.com/js0596a/empirical-lot-cost-simulator)
 - [FoodBridge](https://devpost.com/software/food-bridge-isqzu0)
 - [LinkedIn](https://linkedin.com/in/edu-sal)
 
 This repository contains portfolio content and app code. Private company datasets are not included.
+

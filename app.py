@@ -5,19 +5,18 @@ from datetime import datetime, timedelta
 from dash import Dash, Input, Output, dcc, html
 import plotly.graph_objects as go
 
-from cv_data import AWARDS, EDUCATION, EXPERIENCE, PROFILE, PROJECTS, SKILLS
+from cv_data import EDUCATION, EXPERIENCE, PROFILE, PROJECTS, SKILLS
 
 ACCENT_COLORS = ["#0ea5a4", "#ff7a59", "#ffd166", "#3aa8ff", "#6b9ac4", "#f29e4c"]
 
 
 def flatten_skills(category: str) -> list[dict]:
-    rows = []
-    for cat_name, items in SKILLS.items():
-        if category != "All" and cat_name != category:
-            continue
-        for skill, context in items.items():
-            rows.append({"category": cat_name, "skill": skill, "context": context})
-    return rows
+    return [
+        {"category": cat_name, "skill": skill}
+        for cat_name, items in SKILLS.items()
+        if category == "All" or cat_name == category
+        for skill in items
+    ]
 
 
 def filter_projects(tech_filter: list[str], query: str) -> list[dict]:
@@ -31,7 +30,7 @@ def filter_projects(tech_filter: list[str], query: str) -> list[dict]:
             continue
         if query:
             searchable = " ".join(
-                [project["name"], project["description"], project["impact"], " ".join(project["tech"])]
+                [project["name"], project["description"], project["details"], " ".join(project["tech"])]
             ).lower()
             if query not in searchable:
                 continue
@@ -167,12 +166,12 @@ def make_skill_bubble_figure(skill_rows: list[dict]) -> go.Figure:
         x=[row["category"] for row in skill_rows],
         y=[row["skill"] for row in skill_rows], mode="markers",
         marker=dict(size=13, color="#0ea5a4"),
-        text=[row["context"] for row in skill_rows],
+        text=[row["category"] for row in skill_rows],
         hovertemplate="<b>%{y}</b><br>%{text}<extra></extra>",
     ))
     fig.update_layout(height=max(360, len(skill_rows) * 26))
     fig.update_yaxes(automargin=True)
-    return style_figure(fig, "Tools and topics - hover for context")
+    return style_figure(fig, "Tools and methods")
 
 
 def make_project_technology_figure(projects: list[dict]) -> go.Figure:
@@ -195,30 +194,21 @@ def make_project_cards(projects: list[dict]) -> list[html.Div]:
 
     cards = []
     for project in projects:
-        card_class = "project-card featured" if project.get("badge") else "project-card"
-        card_children = []
+        children = []
         if project.get("badge"):
-            card_children.append(html.Div(project["badge"], className="feature-badge"))
-
-        card_children.extend(
-            [
-                html.Div(project["name"], className="card-title"),
-                html.Div(project["description"], className="card-description"),
-                html.Div(project["impact"], className="card-impact"),
-                html.Div(
-                    [html.Span(tag, className="tag") for tag in project["tech"]],
-                    className="tag-row",
-                ),
-                html.A(project.get("link_label", "View Project"), href=project["link"], target="_blank", className="card-link"),
-            ]
-        )
-
-        cards.append(
-            html.Div(
-                className=card_class,
-                children=card_children,
-            )
-        )
+            children.append(html.Div(project["badge"], className="feature-badge"))
+        children.extend([
+            html.Div(project["name"], className="card-title"),
+            html.Div(project["description"], className="card-description"),
+            html.Div(project["details"], className="card-description"),
+            html.Div([html.Span(tag, className="tag") for tag in project["tech"]], className="tag-row"),
+        ])
+        if project.get("link"):
+            children.append(html.A("View Project", href=project["link"], target="_blank", className="card-link"))
+        cards.append(html.Div(
+            className="project-card featured" if project.get("badge") else "project-card",
+            children=children,
+        ))
     return cards
 
 
@@ -252,6 +242,7 @@ def make_education_cards() -> list[html.Div]:
                     html.Div(item["degree"], className="card-title"),
                     html.Div(item["school"], className="card-description"),
                     html.Div(item.get("graduation", str(item["year"])), className="card-meta"),
+                    html.Div("GPA: " + item["gpa"], className="card-meta"),
                     html.P("Completed coursework: " + item.get("coursework", ""), className="card-description"),
                     html.P("In progress: " + item.get("in_progress", ""), className="card-description"),
                 ],
@@ -260,33 +251,12 @@ def make_education_cards() -> list[html.Div]:
     return cards
 
 
-def make_award_cards() -> list[html.Div]:
-    if not AWARDS:
-        return [html.Div("No scholarships or awards added yet.", className="empty-state")]
-
-    cards = []
-    for award in sorted(AWARDS, key=lambda item: item.get("year", 0), reverse=True):
-        amount = award.get("amount")
-        amount_text = f"${amount:,}" if amount else "Recognition"
-        summary = f"{award['type']} | {amount_text}"
-        cards.append(
-            html.Div(
-                className="award-card",
-                children=[
-                    html.Div(award["title"], className="card-title"),
-                    html.Div(f"{award['year']} | {award['issuer']}", className="card-meta"),
-                    html.Div(summary, className="card-impact"),
-                    html.Ul([html.Li(item) for item in award["details"]], className="bullet-list"),
-                ],
-            )
-        )
-    return cards
 
 
 def make_skill_chips(skill_rows: list[dict]) -> list[html.Span]:
     if not skill_rows:
         return [html.Span("No skills selected", className="tag")]
-    return [html.Span(f"{row['skill']}: {row['context']}", className="tag") for row in skill_rows]
+    return [html.Span(row["skill"], className="tag") for row in skill_rows]
 
 
 def panel_visibility(selected_view: str) -> tuple[dict, dict, dict, dict]:
@@ -369,7 +339,7 @@ app.layout = html.Div(
                                     value="All",
                                     clearable=False,
                                 ),
-                                html.Label("Filter by Technology"),
+                                html.Label("Filter by Tool or Topic"),
                                 dcc.Dropdown(
                                     id="tech-filter",
                                     options=[{"label": item, "value": item} for item in all_tech],
@@ -414,8 +384,6 @@ app.layout = html.Div(
                                         html.Div(id="leadership-experience-grid", className="card-grid"),
                                         html.H3("Education"),
                                         html.Div(id="education-grid", className="education-grid"),
-                                        html.H3("Scholarships & Awards"),
-                                        html.Div(id="awards-grid", className="card-grid"),
                                     ],
                                 ),
                                 html.Div(
@@ -456,7 +424,6 @@ app.layout = html.Div(
     Output("work-experience-grid", "children"),
     Output("leadership-experience-grid", "children"),
     Output("education-grid", "children"),
-    Output("awards-grid", "children"),
     Output("skill-chips", "children"),
     Output("overview-panel", "style"),
     Output("experience-panel", "style"),
@@ -472,7 +439,6 @@ def refresh_dashboard(category: str, tech_filter: list[str], search: str, view_m
     projects = filter_projects(tech_filter, search)
     roles = filter_experience(tech_filter)
     work_roles, leadership_roles = split_experience_sections(roles)
-    award_funding = sum((item.get("amount") or 0) for item in AWARDS)
 
     min_start = min(item["start_year"] for item in EXPERIENCE)
     max_end = max(item["end_year"] for item in EXPERIENCE)
@@ -482,7 +448,6 @@ def refresh_dashboard(category: str, tech_filter: list[str], search: str, view_m
         card("Visible Projects", str(len(projects)), "Based on filters"),
         card("Visible Skills", str(len(skill_rows)), "In selected category"),
         card("Roles", str(len(roles)), "Matching tech filter"),
-        card("Awards", str(len(AWARDS)), f"${award_funding:,} scholarship funding"),
     ]
 
     view_title = {
@@ -505,7 +470,6 @@ def refresh_dashboard(category: str, tech_filter: list[str], search: str, view_m
         make_experience_cards(work_roles, "No work-experience roles match this tech filter."),
         make_experience_cards(leadership_roles, "No research or student projects match this tech filter."),
         make_education_cards(),
-        make_award_cards(),
         make_skill_chips(skill_rows),
         overview_style,
         experience_style,
@@ -516,4 +480,5 @@ def refresh_dashboard(category: str, tech_filter: list[str], search: str, view_m
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 

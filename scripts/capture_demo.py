@@ -103,7 +103,7 @@ def run_capture(
             page.wait_for_timeout(1300)
             page.mouse.wheel(0, 380)
             page.wait_for_timeout(700)
-            page.screenshot(path=str(frames_dir / "02-experience-awards.png"))
+            page.screenshot(path=str(frames_dir / "02-experience.png"))
 
             page.locator("label", has_text="Projects").first.click()
             page.wait_for_timeout(1100)
@@ -119,7 +119,7 @@ def run_capture(
 
         frame_paths = [
             frames_dir / "01-overview.png",
-            frames_dir / "02-experience-awards.png",
+            frames_dir / "02-experience.png",
             frames_dir / "03-projects-costos.png",
             frames_dir / "04-skills.png",
         ]
@@ -190,4 +190,5 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
 

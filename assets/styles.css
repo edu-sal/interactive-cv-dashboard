@@ -284,8 +284,7 @@ body {
 
 .project-card,
 .experience-card,
-.education-card,
-.award-card {
+.education-card {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -294,10 +293,7 @@ body {
   animation: fadeLift 0.55s ease;
 }
 
-.award-card {
-  border-color: rgba(255, 209, 102, 0.55);
-  background: linear-gradient(150deg, rgba(255, 250, 236, 0.94), rgba(255, 255, 255, 0.82));
-}
+
 
 .card-title {
   font-weight: 700;
@@ -316,12 +312,7 @@ body {
   margin-bottom: 0.4rem;
 }
 
-.card-impact {
-  font-size: 0.85rem;
-  margin-bottom: 0.45rem;
-  color: #2f4459;
-  font-weight: 600;
-}
+
 
 .card-link {
   color: #1468b3;
@@ -453,3 +444,4 @@ input[type='text'] {
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
+

@@ -15,10 +15,9 @@ The project is configuration-driven: `cv_data.py` acts as a structured data sour
 
 - `PROFILE`: headline, contact, external links
 - `EXPERIENCE`: month-level role dates and activity descriptions
-- `PROJECTS`: project descriptions, context, technologies, and links
-- `SKILLS`: categories mapping each tool or topic to a short usage or coursework description
+- `PROJECTS`: résumé project descriptions, a synthetic Costos demo, and optional verified links
+- `SKILLS`: Tools and Methods lists from the résumé; SQL is marked as coursework
 - `EDUCATION`: academic entries
-- `AWARDS`: scholarships and distinctions
 
 ## Quality gates
 
@@ -31,4 +30,5 @@ The project is configuration-driven: `cv_data.py` acts as a structured data sour
 - `scripts/capture_demo.py`: captures repeatable walkthrough visuals from live app interactions
 - `scripts/check_links.sh`: HTTP checks for links defined in `cv_data.py`
 - `Makefile`: repeatable local commands for setup, check, test, and demo generation
+
 
