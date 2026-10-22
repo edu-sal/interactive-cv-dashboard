@@ -67,8 +67,13 @@ EXPERIENCE = [{'role': 'Data Scientist Intern (Full-Time, Unpaid)',
                  'a Jupyter notebook.',
                  'Ran experiments with three random seeds and interpreted rating-prediction error, '
                  'top-10 recommendation quality, and the range of movies recommended using tables '
-                 'and plots.'],
-  'tech': ['Python', 'AI-assisted coding', 'Jupyter notebook', 'Model evaluation']},
+                 'and plots.',
+                 'Reviewed literature on recommendation models and popularity bias, and discussed '
+                 'experimental methods, findings, and limitations with faculty mentor Dr. Zois '
+                 'Boukouvalas, Graduate Director of the MS in Data Science and MS in Artificial '
+                 'Intelligence programs at American University.'],
+  'tech': ['Python', 'AI-assisted coding', 'Jupyter notebook', 'Model evaluation',
+           'Literature review', 'Research communication']},
  {'role': 'Business & Presentation Contributor',
   'company': 'George Hacks x UN Reboot the Earth Hackathon',
   'location': 'Washington, D.C.',
@@ -150,7 +155,9 @@ SKILLS = {'Tools': ['Python',
              'Descriptive statistics',
              'Regression',
              'Data visualization',
-             'Model evaluation'],
+             'Model evaluation',
+             'Literature review',
+             'Research communication'],
  'AI-assisted problem solving': ['Prompt design and refinement',
                       'Coding and debugging with Codex',
                       'Reviewing outputs in context']}
@@ -164,7 +171,9 @@ EDUCATION = [{'degree': 'B.S. in Statistics; Applied Statistics specialization; 
                 'Data Mining, Machine Learning, Advanced Machine Learning, Neural Networks and '
                 'Deep Learning, Database Design, and SQL. Optimization (academic study): gradients, '
                 'regularization, and Lagrange multipliers (theory); non-convex optimization in '
-                'matrix-factorization recommender systems. These are subjects studied or being '
+                'matrix-factorization recommender systems. Machine-learning methods (coursework): '
+                'data preprocessing, feature-engineering fundamentals, cross-validation, and '
+                'model evaluation. These are subjects studied or being '
                 'studied through coursework and academic projects; practical experience is '
                 'described in the projects and internship entries.',
   'gpa': '3.91'}]
