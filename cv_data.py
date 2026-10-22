@@ -69,7 +69,7 @@ EXPERIENCE = [{'role': 'Data Scientist Intern (Full-Time, Unpaid)',
                  'top-10 recommendation quality, and the range of movies recommended using tables '
                  'and plots.',
                  'Reviewed research literature and discussed experimental methods, findings, and '
-                 'limitations with my faculty mentor.'],
+                 'limitations with faculty mentor.'],
   'tech': ['Python',
            'AI-assisted coding',
            'Jupyter notebook',
