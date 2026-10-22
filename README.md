@@ -2,6 +2,8 @@
 
 Hi, I'm Eduardo. I'm finishing my B.S. in Statistics at American University, with an Applied Statistics specialization and a Mathematics minor.
 
+I'm eager to put these skills to work, keep learning from the people around me, and help a team turn analysis into findings others can understand and use.
+
 This is a small Dash app for browsing my experience, projects, coursework, and skills. For a quick overview or a job application, here's my **[résumé (PDF)](https://github.com/edu-sal/edu-sal/blob/main/Eduardo_Salgado_Liceaga_Resume.pdf)**. The app keeps the same experience bullets, with filters and project links to help you explore.
 
 My experience so far includes cleaning Excel records and making cost dashboards at Curfimex, using ABCA PDF reports for a brief market research project at FinEx, and evaluating a MovieLens recommendation model in a part-time research role. I also contributed to the business concept and presentation for FoodBridge and led a student team in an endowment case competition.
@@ -22,7 +24,7 @@ The repository shows the team's application; my contribution focused on the busi
 
 ## Using the CV app
 
-Choose Overview, Experience, Projects, or Skills. You can filter experience and projects by tool or topic, search project descriptions, and browse the résumé's Tools, Methods, and AI-assisted work lists. The charts show dates and listed tools.
+Choose Overview, Experience, Projects, or Skills. You can filter experience and projects by tool or topic, search project descriptions, and browse the résumé's Tools, Methods, and AI-assisted problem solving lists. The charts show dates and listed tools.
 
 The app uses Python, Dash, and Plotly. Its profile content lives in `cv_data.py`.
 

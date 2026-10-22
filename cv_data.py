@@ -3,12 +3,14 @@ PROFILE = {'name': 'Eduardo Salgado-Liceaga',
  'location': 'Washington, D.C.',
  'email': 'eddy9202003@gmail.com',
  'phone': '(202) 595-5801',
- 'summary': "I'm Eduardo, a Statistics senior at American University, graduating in May 2027. I "
-            'like taking data from Excel files and PDF reports, organizing it, and finding a clear '
-            'way to explain the results. My experience includes cost dashboards, a brief market '
-            'research project, and undergraduate research with movie-rating data. I use AI as a '
-            'primary coding assistant, supplying data context, refining prompts, and reviewing '
-            'outputs against the questions and records.',
+ 'summary': "I'm Eduardo, a Statistics senior at American University, graduating in May 2027. "
+            'I like taking data from Excel files and PDF reports, organizing it, and finding '
+            'a clear way to explain the results. My experience includes cost dashboards, a '
+            'brief market research project, and undergraduate research with movie-rating '
+            'data. I use AI as a primary coding assistant, supplying data context, refining '
+            "prompts, and reviewing outputs against the questions and records. I'm eager to "
+            'put these skills to work, keep learning from the people around me, and help a '
+            'team turn analysis into findings others can understand and use.',
  'links': {'GitHub': 'https://github.com/edu-sal',
            'LinkedIn': 'https://linkedin.com/in/edu-sal',
            'Costos Dashboard Demo': 'https://github.com/edu-sal/costos-dashboard',
@@ -27,9 +29,9 @@ EXPERIENCE = [{'role': 'Data Scientist Intern (Full-Time, Unpaid)',
   'highlights': ["Organized and checked Excel cost records for Curfimex's tanning and "
                  'leather-processing operations, using company context to identify batches, '
                  'customers, and materials.',
-                 'Used Codex as the primary coding assistant to build Python, Dash, and Plotly '
-                 'dashboards, refining prompts to compare monthly costs, cost per kilogram, and '
-                 'variable and allocated fixed costs.',
+                 'Developed Python, Dash, and Plotly dashboards with Codex as the primary '
+                 'coding assistant, refining prompts to compare monthly costs, cost per '
+                 'kilogram, and variable and allocated fixed costs.',
                  'Compared outputs with source records and prepared Pareto (80/20) charts and '
                  'Excel summaries of chemical costs, adjustments, and water and ice use in '
                  'tanning.'],
@@ -45,10 +47,11 @@ EXPERIENCE = [{'role': 'Data Scientist Intern (Full-Time, Unpaid)',
   'section': 'work',
   'highlights': ['Extracted and organized data from ABCA PDF reports for a brief cannabis market '
                  'research project.',
-                 'Used Codex as the primary coding assistant to create Python dashboards and Excel '
-                 'summaries, refining prompts around the research questions and reported figures.',
-                 'Summarized findings in charts and presentation slides for review with the '
-                 'project team.'],
+                 'Created Python dashboards and Excel summaries with Codex as the primary '
+                 'coding assistant, refining prompts around the research questions and '
+                 'reported figures.',
+                 'Communicated market research findings through charts and presentation '
+                 'slides for review with the project team.'],
   'tech': ['Python', 'Excel', 'Codex', 'PDF data extraction', 'Data visualization']},
  {'role': 'Undergraduate Research Assistant (Part-Time)',
   'company': 'American University - Department of Mathematics and Statistics',
@@ -59,9 +62,9 @@ EXPERIENCE = [{'role': 'Data Scientist Intern (Full-Time, Unpaid)',
   'end_month': '2026-08',
   'date_range': 'May 2026 - Aug 2026',
   'section': 'project',
-  'highlights': ['Used AI as the primary coding assistant to adapt a Python matrix-factorization '
-                 'baseline using MovieLens ratings, documenting the model and evaluation in a '
-                 'Jupyter notebook.',
+  'highlights': ['Adapted a Python matrix-factorization baseline using MovieLens ratings with '
+                 'AI as the primary coding assistant, documenting the model and evaluation in '
+                 'a Jupyter notebook.',
                  'Ran experiments with three random seeds and interpreted rating-prediction error, '
                  'top-10 recommendation quality, and the range of movies recommended using tables '
                  'and plots.'],
@@ -92,8 +95,8 @@ EXPERIENCE = [{'role': 'Data Scientist Intern (Full-Time, Unpaid)',
   'section': 'project',
   'highlights': ['Led a five-person student team in a case competition about a fictional '
                  "university's endowment and funding needs.",
-                 "Worked with teammates to compare options against the case's budget and "
-                 "investment restrictions, then presented the team's findings and "
+                 'Collaborated with teammates to compare investment options against the '
+                 "case's budget and restrictions, then presented the team's findings and "
                  'recommendations.'],
   'tech': ['Case analysis', 'Team presentation', 'Team leadership']}]
 
@@ -107,9 +110,9 @@ PROJECTS = [{'name': 'Costos Dashboard Demo',
   'link': 'https://github.com/edu-sal/costos-dashboard',
   'badge': 'Synthetic data demo'},
  {'name': 'MovieLens Recommendation Baseline',
-  'description': 'Used AI as the primary coding assistant to adapt a Python matrix-factorization '
-                 'baseline using MovieLens ratings, documenting the model and evaluation in a '
-                 'Jupyter notebook.',
+  'description': 'Adapted a Python matrix-factorization baseline using MovieLens ratings with '
+                 'AI as the primary coding assistant, documenting the model and evaluation in '
+                 'a Jupyter notebook.',
   'details': 'Ran experiments with three random seeds and interpreted rating-prediction error, '
              'top-10 recommendation quality, and the range of movies recommended using tables and '
              'plots.',
@@ -125,8 +128,9 @@ PROJECTS = [{'name': 'Costos Dashboard Demo',
  {'name': 'Goldman Sachs Case Competition',
   'description': 'Led a five-person student team in a case competition about a fictional '
                  "university's endowment and funding needs.",
-  'details': "Worked with teammates to compare options against the case's budget and investment "
-             "restrictions, then presented the team's findings and recommendations.",
+  'details': "Collaborated with teammates to compare investment options against the case's "
+             "budget and restrictions, then presented the team's findings and "
+             'recommendations.',
   'tech': ['Case analysis', 'Team presentation', 'Team leadership']}]
 
 SKILLS = {'Tools': ['Python',
@@ -148,7 +152,7 @@ SKILLS = {'Tools': ['Python',
              'Regression',
              'Data visualization',
              'Model evaluation'],
- 'AI-assisted work': ['Prompt design and refinement',
+ 'AI-assisted problem solving': ['Prompt design and refinement',
                       'Coding and debugging with Codex',
                       'Reviewing outputs in context']}
 

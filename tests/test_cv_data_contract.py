@@ -17,7 +17,7 @@ def test_skill_categories_preserve_the_resume_lists_and_coursework_label():
     assert SKILLS == {
         "Tools": ["Python", "R", "pandas", "NumPy", "openpyxl", "Excel", "Power BI", "Plotly", "Dash", "Git/GitHub", "Codex", "SQL (coursework)"],
         "Methods": ["Excel/PDF data extraction", "Data cleaning", "Exploratory analysis", "Descriptive statistics", "Regression", "Data visualization", "Model evaluation"],
-        "AI-assisted work": ["Prompt design and refinement", "Coding and debugging with Codex", "Reviewing outputs in context"],
+        "AI-assisted problem solving": ["Prompt design and refinement", "Coding and debugging with Codex", "Reviewing outputs in context"],
     }
 
 
