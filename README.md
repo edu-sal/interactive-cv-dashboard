@@ -6,9 +6,13 @@ I'm eager to put these skills to work, keep learning from the people around me, 
 
 This is a small Dash app for browsing my experience, projects, coursework, and skills. For a quick overview or a job application, here's my **[résumé (PDF)](https://github.com/edu-sal/edu-sal/blob/main/Eduardo_Salgado_Liceaga_Resume.pdf)**. The app keeps the same experience bullets, with filters and project links to help you explore.
 
-My experience so far includes cleaning Excel records and making cost dashboards at Curfimex, using ABCA PDF reports for a brief market research project at FinEx, and evaluating a MovieLens recommendation model in a part-time research role. I also contributed to the business concept and presentation for FoodBridge and led a student team in an endowment case competition.
+My experience so far includes cleaning Excel records and making cost dashboards at Curfimex, using ABCA PDF reports for a brief market research project at FinEx, and evaluating a MovieLens recommendation model in a part-time research role. My research with Dr. Zois Boukouvalas also involved reviewing research literature and discussing experimental methods, findings, and limitations. Zois is Graduate Director of AU's MS in Data Science and MS in Artificial Intelligence programs. I also contributed to the business concept and presentation for FoodBridge and led a student team in an endowment case competition.
 
 The internship and project descriptions explain my individual contribution. I use AI as a primary coding assistant, bringing the data context and research questions, refining prompts, and reviewing the outputs. The education section lists my academic coursework and topics; the project descriptions show what I have applied.
+
+## Academic foundations
+
+My AU coursework includes linear and numerical linear algebra, probability theory, multivariate calculus, mathematical statistics, regression, data mining, machine learning, advanced machine learning, neural networks/deep learning, database design, and SQL. Academic methods include data preprocessing, feature-engineering fundamentals, cross-validation, model evaluation, and optimization. These are areas of academic study and practice.
 
 ## A project you can explore: Costos
 
