@@ -8,7 +8,7 @@ This is a small Dash app for browsing my experience, projects, coursework, and s
 
 My experience so far includes cleaning Excel records and making cost dashboards at Curfimex, using ABCA PDF reports for a brief market research project at FinEx, and evaluating a MovieLens recommendation model in a part-time research role. I also contributed to the business concept and presentation for FoodBridge and led a student team in an endowment case competition.
 
-The internship and project descriptions explain my individual contribution. I use AI as a primary coding assistant, bringing the data context and research questions, refining prompts, and reviewing the outputs. Coursework appears in one list, matching the résumé.
+The internship and project descriptions explain my individual contribution. I use AI as a primary coding assistant, bringing the data context and research questions, refining prompts, and reviewing the outputs. The education section lists my academic coursework and topics; the project descriptions show what I have applied.
 
 ## A project you can explore: Costos
 
@@ -24,7 +24,7 @@ The repository shows the team's application; my contribution focused on the busi
 
 ## Using the CV app
 
-Choose Overview, Experience, Projects, or Skills. You can filter experience and projects by tool or topic, search project descriptions, and browse the résumé's Tools, Methods, and AI-assisted problem solving lists. The charts show dates and listed tools.
+Choose Overview, Experience, Projects, or Skills. You can filter experience and projects by tool or topic, search project descriptions, and browse the Tools, Methods, and AI-assisted problem solving lists. The charts show dates and listed tools.
 
 The app uses Python, Dash, and Plotly. Its profile content lives in `cv_data.py`.
 
