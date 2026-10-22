@@ -21,7 +21,7 @@ def test_month_timeline_does_not_expand_internship_to_a_full_year():
 
 def test_search_and_skill_context_filters():
     assert [row['name'] for row in filter_projects(['Dash'], 'synthetic')] == ['Costos Dashboard Demo']
-    assert {'category': 'Tools', 'skill': 'SQL (coursework)'} in flatten_skills('Tools')
+    assert {'category': 'Coursework tools', 'skill': 'SQL (coursework)'} in flatten_skills('Coursework tools')
     assert not flatten_skills('Missing category')
 
 
@@ -42,7 +42,7 @@ def test_callback_and_dash_endpoints_render_without_scores():
 
 def test_projects_without_links_render_without_fabricated_anchors():
     from cv_data import PROJECTS
-    for name in ["MovieLens Recommendation Baseline", "Goldman Sachs Case Competition"]:
+    for name in ["MovieLens Recommender and Popularity Analysis", "Goldman Sachs Case Competition"]:
         project = next(item for item in PROJECTS if item["name"] == name)
         card = make_project_cards([project])[0]
         assert all(getattr(child, "href", None) is None for child in card.children)
@@ -60,3 +60,4 @@ def test_empty_filters_and_award_removal_keep_callback_outputs_valid():
     assert "awards" not in rendered
     callback = next(iter(app.callback_map.values()))
     assert len(callback["output"]) == len(output)
+

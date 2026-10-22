@@ -1,16 +1,15 @@
 PROFILE = {'name': 'Eduardo Salgado-Liceaga',
- 'headline': 'Statistics student at American University | Python and data analysis',
+ 'headline': 'Statistics senior at American University | Data analysis and AI-assisted problem '
+             'solving',
  'location': 'Washington, D.C.',
  'email': 'eddy9202003@gmail.com',
  'phone': '(202) 595-5801',
- 'summary': "I'm Eduardo, a Statistics senior at American University, graduating in May 2027. I "
-            'enjoy making sense of data, reviewing research literature, and explaining findings '
-            'clearly. My experience includes cost dashboards at Curfimex, a brief market research '
-            "project at FinEx, and research with Dr. Zois Boukouvalas, Graduate Director of AU's "
-            'MS in Data Science and MS in Artificial Intelligence programs. I use AI as a primary '
-            'coding assistant, supplying context, refining prompts, and reviewing outputs. My '
-            'coursework gives me a foundation in mathematics, statistics, and machine learning, '
-            'which I am continuing to learn to apply.',
+ 'summary': 'Statistics senior at American University, graduating May 2027. I work with Python, '
+            'Excel, and AI-assisted coding to organize data, compare results, and explain '
+            'findings. My experience includes cost analysis, market research, and '
+            'recommender-system research with Dr. Zois Boukouvalas. My mathematics and '
+            'machine-learning preparation is primarily academic, with selected concepts applied in '
+            'research.',
  'links': {'GitHub': 'https://github.com/edu-sal',
            'LinkedIn': 'https://linkedin.com/in/edu-sal',
            'Costos Dashboard Demo': 'https://github.com/edu-sal/costos-dashboard',
@@ -63,14 +62,16 @@ EXPERIENCE = [{'role': 'Data Scientist Intern (Full-Time, Unpaid)',
   'section': 'project',
   'highlights': ["Faculty mentor: Dr. Zois Boukouvalas, Graduate Director of AU's MS in Data "
                  'Science and MS in Artificial Intelligence programs.',
-                 'Adapted a Python matrix-factorization baseline using MovieLens ratings with AI '
-                 'as the primary coding assistant; documented the model and evaluation in Jupyter.',
-                 'Ran experiments with three random seeds and interpreted rating-prediction error, '
-                 'top-10 recommendation quality, and the range of movies recommended using tables '
-                 'and plots.',
+                 'Adapted a PyTorch logistic matrix-factorization recommender using MovieLens 100K '
+                 'with AI as the primary coding assistant; documented the model and evaluation in '
+                 'Jupyter.',
+                 'Compared ranking quality, recommendation popularity, and catalog coverage across '
+                 'five random seeds, evaluating a post-training popularity adjustment against the '
+                 'baseline.',
                  'Reviewed research literature and discussed experimental methods, findings, and '
                  'limitations with faculty mentor.'],
   'tech': ['Python',
+           'PyTorch',
            'AI-assisted coding',
            'Jupyter notebook',
            'Model evaluation',
@@ -115,13 +116,14 @@ PROJECTS = [{'name': 'Costos Dashboard Demo',
   'tech': ['Python', 'Excel', 'Dash', 'Plotly', 'Codex'],
   'link': 'https://github.com/edu-sal/costos-dashboard',
   'badge': 'Synthetic data demo'},
- {'name': 'MovieLens Recommendation Baseline',
-  'description': 'Adapted a Python matrix-factorization baseline using MovieLens ratings with AI '
-                 'as the primary coding assistant; documented the model and evaluation in Jupyter.',
-  'details': 'Ran experiments with three random seeds and interpreted rating-prediction error, '
-             'top-10 recommendation quality, and the range of movies recommended using tables and '
-             'plots.',
-  'tech': ['Python', 'AI-assisted coding', 'Jupyter notebook', 'Model evaluation']},
+ {'name': 'MovieLens Recommender and Popularity Analysis',
+  'description': 'Adapted a PyTorch logistic matrix-factorization recommender using MovieLens 100K '
+                 'with AI as the primary coding assistant; documented the model and evaluation in '
+                 'Jupyter.',
+  'details': 'Compared ranking quality, recommendation popularity, and catalog coverage across '
+             'five random seeds, evaluating a post-training popularity adjustment against the '
+             'baseline.',
+  'tech': ['Python', 'PyTorch', 'AI-assisted coding', 'Jupyter notebook', 'Model evaluation']},
  {'name': 'FoodBridge',
   'description': 'Collaborated with software engineering students on FoodBridge, an AI-powered '
                  'meal-planning prototype, using AI tools to help refine its business concept and '
@@ -138,7 +140,7 @@ PROJECTS = [{'name': 'Costos Dashboard Demo',
   'tech': ['Case analysis', 'Team presentation', 'Team leadership']}]
 
 SKILLS = {'Tools': ['Python',
-           'R',
+           'PyTorch',
            'pandas',
            'NumPy',
            'openpyxl',
@@ -146,13 +148,12 @@ SKILLS = {'Tools': ['Python',
            'Plotly',
            'Dash',
            'Git/GitHub',
-           'Codex',
-           'SQL (coursework)'],
+           'Codex'],
+ 'Coursework tools': ['R (coursework)', 'SQL (coursework)', 'Apache Spark (coursework)'],
  'Methods': ['Excel/PDF data extraction',
              'Data cleaning',
              'Exploratory analysis',
              'Descriptive statistics',
-             'Regression',
              'Data visualization',
              'Model evaluation',
              'Literature review',
@@ -160,14 +161,17 @@ SKILLS = {'Tools': ['Python',
  'AI-assisted problem solving': ['Prompt design and refinement',
                                  'Coding and debugging with Codex',
                                  'Reviewing outputs in context'],
- 'Academic ML methods': ['Data preprocessing',
+ 'Academic ML methods': ['Regression',
+                         'Data preprocessing',
                          'Feature-engineering fundamentals',
                          'Cross-validation',
-                         'Model evaluation'],
+                         'Model evaluation',
+                         'Bias-variance tradeoff (theory)'],
  'Academic optimization': ['Gradients',
                            'Regularization',
+                           'Constraints (theory)',
                            'Lagrange multipliers (theory)',
-                           'Non-convex matrix factorization']}
+                           'Non-convex matrix factorization (research)']}
 
 EDUCATION = [{'degree': 'B.S. in Statistics; Applied Statistics specialization; Mathematics minor',
   'school': 'American University, College of Arts and Sciences',
@@ -176,11 +180,13 @@ EDUCATION = [{'degree': 'B.S. in Statistics; Applied Statistics specialization; 
   'coursework': 'Academic coursework and topics: Linear Algebra, Numerical Linear Algebra, '
                 'Probability Theory, Multivariate Calculus, Mathematical Statistics, Regression, '
                 'Data Mining, Machine Learning, Advanced Machine Learning, Neural Networks and '
-                'Deep Learning, Database Design, and SQL. Optimization (academic study): '
-                'gradients, regularization, and Lagrange multipliers (theory); non-convex '
-                'optimization in matrix-factorization recommender systems. Machine-learning '
-                'methods (coursework): data preprocessing, feature-engineering fundamentals, '
-                'cross-validation, and model evaluation. These are subjects studied or being '
-                'studied through coursework and academic projects; practical experience is '
-                'described in the projects and internship entries.',
+                'Deep Learning, Database Design, SQL, and Big Data Computing. R, SQL, and Apache '
+                'Spark are coursework tools. Mathematics and optimization are primarily '
+                'theoretical coursework, including constraints and Lagrange multipliers (theory), '
+                'with selected concepts applied in recommender-system research with Dr. Zois '
+                'Boukouvalas. Machine-learning methods covered through coursework and academic '
+                'projects include data preprocessing, feature-engineering fundamentals, '
+                'cross-validation, model evaluation, and the bias-variance tradeoff. The '
+                'training-time popularity penalty remains a proposed coursework extension; '
+                'completed research evaluated a post-training popularity adjustment.',
   'gpa': '3.91'}]

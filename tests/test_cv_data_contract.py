@@ -8,7 +8,7 @@ def test_cv_data_satisfies_the_renderer_contract():
 
 def test_optional_project_links_do_not_imply_unpublished_repositories():
     projects = {project["name"]: project for project in PROJECTS}
-    assert "link" not in projects["MovieLens Recommendation Baseline"]
+    assert "link" not in projects["MovieLens Recommender and Popularity Analysis"]
     assert "link" not in projects["Goldman Sachs Case Competition"]
     assert projects["Costos Dashboard Demo"]["link"] == "https://github.com/edu-sal/costos-dashboard"
 
@@ -16,13 +16,15 @@ def test_optional_project_links_do_not_imply_unpublished_repositories():
 def test_skills_preserve_supported_tools_and_academic_context():
     all_skills = {skill for items in SKILLS.values() for skill in items}
     assert "Power BI" not in all_skills
-    assert "SQL (coursework)" in SKILLS["Tools"]
+    assert {"R (coursework)", "SQL (coursework)", "Apache Spark (coursework)"} <= set(SKILLS["Coursework tools"])
+    assert not {"R", "SQL", "Apache Spark", "R (coursework)", "SQL (coursework)", "Apache Spark (coursework)"} & set(SKILLS["Tools"])
+    assert "PyTorch" in SKILLS["Tools"]
     assert {"Literature review", "Research communication"} <= set(SKILLS["Methods"])
     assert "Reviewing outputs in context" in SKILLS["AI-assisted problem solving"]
 
     # Academic topics must retain their qualifications rather than imply industry use.
-    academic_methods = {"Data preprocessing", "Feature-engineering fundamentals", "Cross-validation"}
-    academic_optimization = {"Gradients", "Regularization", "Lagrange multipliers (theory)", "Non-convex matrix factorization"}
+    academic_methods = {"Regression", "Data preprocessing", "Feature-engineering fundamentals", "Cross-validation", "Bias-variance tradeoff (theory)"}
+    academic_optimization = {"Gradients", "Regularization", "Constraints (theory)", "Lagrange multipliers (theory)", "Non-convex matrix factorization (research)"}
     assert academic_methods <= set(SKILLS["Academic ML methods"])
     assert academic_optimization <= set(SKILLS["Academic optimization"])
     practical_skills = set(SKILLS["Tools"]) | set(SKILLS["Methods"])
@@ -41,7 +43,7 @@ def test_experience_matches_confirmed_roles_and_dates():
 
 def test_project_scope_and_research_description_are_grounded_in_resume():
     assert [project["name"] for project in PROJECTS] == [
-        "Costos Dashboard Demo", "MovieLens Recommendation Baseline", "FoodBridge", "Goldman Sachs Case Competition"
+        "Costos Dashboard Demo", "MovieLens Recommender and Popularity Analysis", "FoodBridge", "Goldman Sachs Case Competition"
     ]
     research = PROJECTS[1]
     highlights = EXPERIENCE[2]["highlights"]
@@ -49,7 +51,14 @@ def test_project_scope_and_research_description_are_grounded_in_resume():
     assert research["description"] in highlights
     assert research["details"] in highlights
     assert "AI as the primary coding assistant" in research["description"]
-    assert "three random seeds" in research["details"]
+    assert "PyTorch logistic matrix-factorization" in research["description"]
+    assert "MovieLens 100K" in research["description"]
+    assert "five random seeds" in research["details"]
+    assert "post-training popularity adjustment" in research["details"]
+    assert "PyTorch" in research["tech"]
+    assert "PyTorch" in EXPERIENCE[2]["tech"]
+    research_text = " ".join(highlights).lower()
+    assert not any(stale_claim in research_text for stale_claim in ("three random seeds", "rating-prediction error", "rmse", "spark"))
     assert len(highlights) == len(set(highlights))
     assert highlights[0].startswith("Faculty mentor: Dr. Zois Boukouvalas,")
     assert "MS in Data Science and MS in Artificial Intelligence" in highlights[0]
@@ -64,8 +73,11 @@ def test_degree_and_coursework_match_the_resume():
     assert "B.S. in Statistics" in education["degree"]
     assert "Mathematics minor" in education["degree"]
     assert "in_progress" not in education
-    for topic in ("Advanced Machine Learning", "Database Design", "SQL", "Numerical Linear Algebra", "Probability Theory"):
+    for topic in ("Advanced Machine Learning", "Database Design", "SQL", "Numerical Linear Algebra", "Probability Theory", "Big Data Computing"):
         assert topic in education["coursework"]
     assert "coursework and academic projects" in education["coursework"]
     assert "Lagrange multipliers (theory)" in education["coursework"]
+    assert "R, SQL, and Apache Spark are coursework tools" in education["coursework"]
+    assert "training-time popularity penalty remains a proposed coursework extension" in education["coursework"]
+
 
