@@ -1,15 +1,17 @@
 PROFILE = {'name': 'Eduardo Salgado-Liceaga',
  'headline': 'Statistics student at American University | Python and data analysis',
  'location': 'Washington, D.C.',
- 'email': 'js0596a@american.edu',
+ 'email': 'eddy9202003@gmail.com',
  'phone': '(202) 595-5801',
- 'summary': "I'm studying Statistics at American University, with an Applied Statistics "
-            'specialization and a Mathematics minor. My internship work includes extracting and '
-            'cleaning Excel and PDF data, making dashboards and charts, and preparing summaries '
-            'and presentations. At Curfimex, I used Codex for coding and debugging assistance.',
- 'links': {'GitHub': 'https://github.com/js0596a',
+ 'summary': "I'm Eduardo, a Statistics senior at American University, graduating in May 2027. I "
+            'like taking data from Excel files and PDF reports, organizing it, and finding a clear '
+            'way to explain the results. My experience includes cost dashboards, a brief market '
+            'research project, and undergraduate research with movie-rating data. I use Codex for '
+            'coding and debugging assistance.',
+ 'links': {'GitHub': 'https://github.com/edu-sal',
            'LinkedIn': 'https://linkedin.com/in/edu-sal',
-           'Costos Dashboard Demo': 'https://github.com/js0596a/costos-dashboard'}}
+           'Costos Dashboard Demo': 'https://github.com/edu-sal/costos-dashboard',
+           'Résumé (PDF)': 'https://github.com/edu-sal/edu-sal/blob/main/Eduardo_Salgado_Liceaga_Resume.pdf'}}
 
 EXPERIENCE = [{'role': 'Data Scientist Intern (Full-Time, Unpaid)',
   'company': 'Curfimex S.A. de C.V.',
@@ -90,7 +92,7 @@ PROJECTS = [{'name': 'Costos Dashboard Demo',
                  'and batches, and exploring Pareto (80/20) charts.',
   'details': 'Adapted from my internship app. The public demo and screenshots use synthetic data.',
   'tech': ['Python', 'Excel', 'Dash', 'Plotly', 'Codex'],
-  'link': 'https://github.com/js0596a/costos-dashboard',
+  'link': 'https://github.com/edu-sal/costos-dashboard',
   'badge': 'Synthetic data demo'},
  {'name': 'MovieLens Recommendation Baseline',
   'description': 'Implemented a matrix-factorization baseline in Python using MovieLens ratings, '

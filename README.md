@@ -1,27 +1,18 @@
-# Interactive CV Dashboard
+# My interactive CV
 
-Hi, I'm Eduardo. This is a Dash app for browsing my experience, projects, coursework, and skills while I finish my B.S. in Statistics at American University. My specialization is Applied Statistics, and I'm pursuing a Mathematics minor.
+Hi, I'm Eduardo. I'm finishing my B.S. in Statistics at American University, with an Applied Statistics specialization and a Mathematics minor.
 
-## What you'll find
+This is a small Dash app for browsing my experience, projects, coursework, and skills. For a quick overview or a job application, here's my **[résumé (PDF)](https://github.com/edu-sal/edu-sal/blob/main/Eduardo_Salgado_Liceaga_Resume.pdf)**. The app keeps the same experience bullets, with filters and project links to help you explore.
 
-- **Internships:** full-time, unpaid Data Scientist Intern at Curfimex (May-August 2026) and part-time, unpaid Data Analyst Intern at FinEx (May-August 2025).
-- **Research:** a MovieLens matrix-factorization baseline from my part-time undergraduate research work (May-August 2026).
-- **Student projects:** business and presentation contributions at the FoodBridge student hackathon, and team leadership in the Goldman Sachs student case competition (April 2026).
-- **Tools and coursework:** the tools and methods listed on my résumé, with SQL marked as coursework.
+My experience so far includes cleaning Excel records and making cost dashboards at Curfimex, using ABCA PDF reports for a brief market research project at FinEx, and evaluating a MovieLens recommendation model in a part-time research role. I also contributed to the business concept and presentation for FoodBridge and led a student team in an endowment case competition.
 
-At Curfimex I used Python to extract and clean Excel data, built Dash and Plotly views of monthly costs, and made Pareto (80/20) charts and Excel summaries. I used Codex for coding and debugging assistance. At FinEx I worked with ABCA PDF reports for a brief cannabis market research project and prepared dashboards, summaries, charts, and slides from those records.
+The internship and project descriptions explain my individual contribution. Current courses are listed separately from completed coursework.
 
-For FoodBridge, I worked alongside software engineering students on the business concept and team pitch. For the Goldman Sachs case competition, I led a five-person student team examining a fictional university's endowment and funding needs, helping compare options and present our recommendations.
+## A project you can explore: Costos
 
-The app's education section separates completed coursework from my current courses: Database and AI (SQL), Numerical Analysis, and Advanced Machine Learning.
+**[Costos](https://github.com/edu-sal/costos-dashboard)** is a public demo based on the kind of dashboard work I did during my Curfimex internship. It lets you compare monthly costs, look at spending concentration, and export Excel summaries. All data and screenshots are **synthetic**.
 
-## Featured project: Costos
-
-[Costos Dashboard Demo](https://github.com/js0596a/costos-dashboard) is a public demo adapted from my private internship app. Its data and screenshots are **synthetic**; they do not show company records.
-
-![Costos demo: monthly overview using synthetic data](https://raw.githubusercontent.com/js0596a/costos-dashboard/main/assets/screenshots/overview.png)
-
-![Costos demo: Pareto chart using synthetic data](https://raw.githubusercontent.com/js0596a/costos-dashboard/main/assets/screenshots/pareto.png)
+![Costos demo: monthly overview using synthetic data](https://raw.githubusercontent.com/edu-sal/costos-dashboard/main/assets/screenshots/overview.png)
 
 ## Using the CV app
 
@@ -32,7 +23,7 @@ The app uses Python, Dash, and Plotly. Its profile content lives in `cv_data.py`
 ## Run it locally
 
 ```bash
-git clone https://github.com/js0596a/interactive-cv-dashboard.git
+git clone https://github.com/edu-sal/interactive-cv-dashboard.git
 cd interactive-cv-dashboard
 python3 -m venv .venv
 source .venv/bin/activate
@@ -49,8 +40,8 @@ python -c "from app import app; app.run(debug=True, port=8051)"
 
 ## Links
 
-- [GitHub profile](https://github.com/js0596a)
-- [Costos Dashboard Demo](https://github.com/js0596a/costos-dashboard)
+- [GitHub profile](https://github.com/edu-sal)
+- [Costos Dashboard Demo](https://github.com/edu-sal/costos-dashboard)
 - [FoodBridge](https://devpost.com/software/food-bridge-isqzu0)
 - [LinkedIn](https://linkedin.com/in/edu-sal)
 

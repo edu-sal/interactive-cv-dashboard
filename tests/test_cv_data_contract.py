@@ -10,7 +10,7 @@ def test_optional_project_links_do_not_imply_unpublished_repositories():
     projects = {project["name"]: project for project in PROJECTS}
     assert "link" not in projects["MovieLens Recommendation Baseline"]
     assert "link" not in projects["Goldman Sachs Case Competition"]
-    assert projects["Costos Dashboard Demo"]["link"] == "https://github.com/js0596a/costos-dashboard"
+    assert projects["Costos Dashboard Demo"]["link"] == "https://github.com/edu-sal/costos-dashboard"
 
 
 def test_skill_categories_preserve_the_resume_lists_and_coursework_label():
