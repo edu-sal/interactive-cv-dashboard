@@ -162,7 +162,9 @@ EDUCATION = [{'degree': 'B.S. in Statistics; Applied Statistics specialization; 
   'coursework': 'Academic coursework and topics: Linear Algebra, Numerical Linear Algebra, '
                 'Probability Theory, Multivariate Calculus, Mathematical Statistics, Regression, '
                 'Data Mining, Machine Learning, Advanced Machine Learning, Neural Networks and '
-                'Deep Learning, Database Design, and SQL. These are subjects studied or being '
-                'studied through coursework; practical experience is described in the projects '
-                'and internship entries.',
+                'Deep Learning, Database Design, and SQL. Optimization (academic study): gradients, '
+                'regularization, and Lagrange multipliers (theory); non-convex optimization in '
+                'matrix-factorization recommender systems. These are subjects studied or being '
+                'studied through coursework and academic projects; practical experience is '
+                'described in the projects and internship entries.',
   'gpa': '3.91'}]
