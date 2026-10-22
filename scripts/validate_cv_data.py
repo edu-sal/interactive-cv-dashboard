@@ -71,7 +71,7 @@ def validate() -> list[str]:
     if not isinstance(EDUCATION, list) or not EDUCATION:
         errors.append("EDUCATION must be a non-empty list")
     for idx, item in enumerate(EDUCATION):
-        for key in ("degree", "school", "graduation", "gpa", "coursework", "in_progress"):
+        for key in ("degree", "school", "graduation", "gpa", "coursework"):
             if not isinstance(item.get(key), str) or not item[key].strip():
                 errors.append(f"EDUCATION[{idx}].{key} must be non-empty text")
         if not isinstance(item.get("year"), int):

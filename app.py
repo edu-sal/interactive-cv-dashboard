@@ -243,8 +243,7 @@ def make_education_cards() -> list[html.Div]:
                     html.Div(item["school"], className="card-description"),
                     html.Div(item.get("graduation", str(item["year"])), className="card-meta"),
                     html.Div("GPA: " + item["gpa"], className="card-meta"),
-                    html.P("Completed coursework: " + item.get("coursework", ""), className="card-description"),
-                    html.P("In progress: " + item.get("in_progress", ""), className="card-description"),
+                    html.P("Coursework: " + item.get("coursework", ""), className="card-description"),
                 ],
             )
         )

@@ -17,6 +17,7 @@ def test_skill_categories_preserve_the_resume_lists_and_coursework_label():
     assert SKILLS == {
         "Tools": ["Python", "R", "pandas", "NumPy", "openpyxl", "Excel", "Power BI", "Plotly", "Dash", "Git/GitHub", "Codex", "SQL (coursework)"],
         "Methods": ["Excel/PDF data extraction", "Data cleaning", "Exploratory analysis", "Descriptive statistics", "Regression", "Data visualization", "Model evaluation"],
+        "AI-assisted work": ["Prompt design and refinement", "Coding and debugging with Codex", "Reviewing outputs in context"],
     }
 
 
@@ -40,10 +41,11 @@ def test_project_scope_and_research_description_are_grounded_in_resume():
     assert all(not {"score", "impact", "rating"}.intersection(project) for project in PROJECTS)
 
 
-def test_degree_and_current_coursework_remain_distinct():
+def test_degree_and_coursework_match_the_resume():
     education = EDUCATION[0]
     assert education["gpa"] == "3.91"
     assert "B.S. in Statistics" in education["degree"]
     assert "Mathematics minor" in education["degree"]
-    assert education["in_progress"] == "Database and AI (SQL), Numerical Analysis, Advanced Machine Learning"
-    assert "Advanced Machine Learning" not in education["coursework"]
+    assert "in_progress" not in education
+    assert "Advanced Machine Learning" in education["coursework"]
+    assert "Database and AI (SQL)" in education["coursework"]
