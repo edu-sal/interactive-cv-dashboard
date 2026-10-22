@@ -139,7 +139,6 @@ SKILLS = {'Tools': ['Python',
            'NumPy',
            'openpyxl',
            'Excel',
-           'Power BI',
            'Plotly',
            'Dash',
            'Git/GitHub',
@@ -160,6 +159,10 @@ EDUCATION = [{'degree': 'B.S. in Statistics; Applied Statistics specialization; 
   'school': 'American University, College of Arts and Sciences',
   'year': 2027,
   'graduation': 'Expected May 2027',
-  'coursework': 'Mathematical Statistics, Regression, Linear Algebra, Data Mining, Machine '
-                'Learning, Advanced Machine Learning, Numerical Analysis, Database and AI (SQL)',
+  'coursework': 'Academic coursework and topics: Linear Algebra, Numerical Linear Algebra, '
+                'Probability Theory, Multivariate Calculus, Mathematical Statistics, Regression, '
+                'Data Mining, Machine Learning, Advanced Machine Learning, Neural Networks and '
+                'Deep Learning, Database Design, and SQL. These are subjects studied or being '
+                'studied through coursework; practical experience is described in the projects '
+                'and internship entries.',
   'gpa': '3.91'}]
