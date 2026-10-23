@@ -164,7 +164,8 @@ SKILLS = {'Tools': ['Python',
  'Academic ML methods': ['Regression',
                          'Data preprocessing',
                          'Feature-engineering fundamentals',
-                         'Cross-validation and model selection',
+                         'Cross-validation',
+                         'Model selection',
                          'Model evaluation and data-leakage prevention',
                          'Ridge, LASSO, and elastic-net regularization',
                          'PCA and dimensionality reduction',
@@ -191,9 +192,10 @@ EDUCATION = [{'degree': 'B.S. in Statistics; Applied Statistics specialization; 
                 'with selected concepts applied in recommender-system research with Dr. Zois '
                 'Boukouvalas. Machine-learning methods covered through coursework and academic '
                 'projects include data preprocessing, feature-engineering fundamentals, '
-                'cross-validation, model evaluation, regularization, PCA, SVMs, and the bias-variance ' 
-                'tradeoff. These methods come from completed Introduction to Data Mining and ' 
+                'cross-validation, model evaluation, regularization, PCA, SVMs, and the bias-variance '
+                'tradeoff. These methods come from completed Introduction to Data Mining and '
                 'current Advanced Machine Learning coursework. The '
                 'training-time popularity penalty remains a proposed coursework extension; '
                 'completed research evaluated a post-training popularity adjustment.',
   'gpa': '3.91'}]
+
